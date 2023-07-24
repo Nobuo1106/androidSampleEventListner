@@ -15,14 +15,25 @@ class MainActivity : AppCompatActivity() {
         val btClick = findViewById<Button>(R.id.btClick)
         val listener = HelloListner()
         btClick.setOnClickListener(listener)
+        val btClear = findViewById<Button>(R.id.btClear)
+        btClear.setOnClickListener(listener)
     }
 
     private inner class HelloListner : View.OnClickListener {
         override  fun onClick(view: View) {
             val input = findViewById<EditText>(R.id.etName)
             val output = findViewById<TextView>(R.id.tvOutput)
-            val inputstr = input.text.toString()
-            output.text = inputstr + "さん、こんにちは"
+            when(view.id) {
+                R.id.btClick -> {
+                    val inputstr = input.text.toString()
+                    output.text = inputstr + "さん、こんにちは"
+                }
+
+                R.id.btClear -> {
+                    input.setText("")
+                    output.text = ""
+                }
+            }
         }
     }
 }
